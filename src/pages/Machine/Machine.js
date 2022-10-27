@@ -7,6 +7,8 @@ import { MachineInfo } from './components/MachineInfo/MachineInfo';
 import { BinCapacity } from './components/BinCapacity/BinCapacity';
 import { DetectionList } from './components/DetectionList/DetectionList';
 
+import './Machine.css';
+
 const Machine = () => {
     const { machineID } = useParams();
     const [machine, setMachine] = useState([{}]);
@@ -20,7 +22,7 @@ const Machine = () => {
         getMachine();
     }, []);
     return (
-        <div>
+        <div class="Machine-Overview">
             <MachineInfo props={ machine.machineInfo } />
             <BinCapacity props={ machine.binCapacity } />
             <DetectionList props={ {machineID: machineID} } />

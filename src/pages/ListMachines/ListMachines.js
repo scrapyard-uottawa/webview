@@ -25,13 +25,23 @@ const ListMachines = () => {
         <div className="ListMachines">
             <div>
                 <h1 class = "list">List of Machines</h1>
-                <div class = "table table-striped table-hover">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Machine ID</th>
+                        <th scope="col">Machine Name</th>
+                        <th scope="col">BlackBin</th>
+                        <th scope="col">BlueBin</th>
+                        <th scope="col">Compost</th>
+                        <th scope="col">Garbage</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {machines.map((machine) => (
-                        <tr scope = "row">
                         <MachineCard machine={machine} />
-                        </tr>
                     ))}
-                </div>
+                </tbody>
+                </table>
             </div>
         </div>
     );

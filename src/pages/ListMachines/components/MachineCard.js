@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
+import './MachineCard.css';
 
 export const MachineCard = ({ machine }) => {
     return (
-        <Link to={`/machine-info/${machine.id}`}>
-        <div>
-            <h1>{machine.machineInfo.locationName}</h1>
-            <h2>MachineID: {machine.id}</h2>
-            
-            <p>BlackBin: {machine.binCapacity.blackBin}</p>
-            <p>BlueBin: {machine.binCapacity.blueBin}</p>
-            <p>Compost: {machine.binCapacity.compost}</p>
-            <p>Garbage: {machine.binCapacity.garbage}</p>
-        </div>
-        </Link>
+        <tr>
+            <th>
+                <Link to={`/machine-info/${machine.id}`}>
+                    {machine.id}
+                </Link>
+            </th>
+            <td>{machine.machineInfo.locationName}</td>
+            <td>{machine.binCapacity.blackBin}</td>
+            <td>{machine.binCapacity.blueBin}</td>
+            <td>{machine.binCapacity.compost}</td>
+            <td>{machine.binCapacity.garbage}</td>
+        </tr>
     );
 }
 

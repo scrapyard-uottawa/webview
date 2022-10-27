@@ -5,12 +5,12 @@ import { getDocs, collection } from "firebase/firestore";
 import { DetectionCard } from "../DetectionCard/DetectionCard";
 
 export const DetectionList = ({ props }) => {
-    const machineID = props.machineID;; 
+    const machineID = props.machineID;;
 
     const [detections, setDetections] = useState([{}]);
     useEffect(() => {
         const getDetections = async () => {
-            const detectionsRef = collection(db,"machines", machineID, "detections");
+            const detectionsRef = collection(db, "machines", machineID, "detections");
             const detectionsSnapshot = await getDocs(detectionsRef);
             const detectionsList = detectionsSnapshot.docs.map((doc) => ({
                 id: doc.id,
@@ -26,10 +26,23 @@ export const DetectionList = ({ props }) => {
     return (
         <div className="detection-list">
             <h1>Detections</h1>
-            {detections.map((detection) => (
-               <DetectionCard props={detection} />
-            ))}
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">TimeStamp</th>
+                        <th scope="col">machineLearningConfidence</th>
+                        <th scope="col">wasteType</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                {detections.map((detection) => (
+                    <DetectionCard props={detection} />
+                ))}
+                </tbody>
+                </table>
         </div>
     );
 }
