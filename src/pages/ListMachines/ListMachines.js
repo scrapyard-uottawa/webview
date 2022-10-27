@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { MachineCard } from "./components/MachineCard";
+import './ListMachines.css';
 
 const ListMachines = () => {
     const [machines, setMachines] = useState([]);
@@ -23,11 +24,17 @@ const ListMachines = () => {
     }, []);
 
     return (
-        <div>
-            <h1>List of Machines</h1>
-            {machines.map((machine) => (
-                <MachineCard machine={machine} />
-            ))}
+        <div className="ListMachines">
+            <div>
+                <h1 class = "list">List of Machines</h1>
+                <div class = "table table-striped table-hover">
+                    {machines.map((machine) => (
+                        <tr scope = "row">
+                        <MachineCard machine={machine} />
+                        </tr>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
