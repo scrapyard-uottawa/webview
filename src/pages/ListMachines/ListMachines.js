@@ -1,5 +1,5 @@
 import { machinesRef } from "../../App";
-import { collection, getDocs } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,8 +16,6 @@ const ListMachines = () => {
                 id: doc.id,
                 ...doc.data(),
             }));
-
-
             setMachines(machinesList);
         };
         getMachines();
