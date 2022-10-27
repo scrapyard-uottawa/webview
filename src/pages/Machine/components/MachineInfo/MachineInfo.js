@@ -22,7 +22,7 @@ export const MachineInfo = ({ props }) => {
         <div className="machine-info">
             <h1>Machine Info</h1>
             <h3>Machine Name: {props.locationName}</h3>
-            <MapContainer id='map' center={position} zoom={5} scrollWheelZoom={false}> 
+            <MapContainer id='map' center={position} zoom={17} scrollWheelZoom={false}> 
                 <TileLayer // add tile layer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
                 />
