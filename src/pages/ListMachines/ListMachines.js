@@ -15,8 +15,6 @@ const ListMachines = () => {
                 id: doc.id,
                 ...doc.data(),
             }));
-
-
             setMachines(machinesList);
         };
         getMachines();
