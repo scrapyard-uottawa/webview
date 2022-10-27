@@ -4,7 +4,7 @@ import './MachineCard.css';
 export const MachineCard = ({ machine }) => {
     return (
         <tr>
-            <th>
+            <th class="link">
                 <Link to={`/machine-info/${machine.id}`}>
                     {machine.id}
                 </Link>

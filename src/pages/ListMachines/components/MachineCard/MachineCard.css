@@ -3,3 +3,13 @@ tr:hover {
   /* text colour */
     background: aliceblue;
 }
+
+/* links */
+tr a{
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+
+

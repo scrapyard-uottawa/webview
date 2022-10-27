@@ -2,12 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 // import pages
 import ListMachines from "./pages/ListMachines/ListMachines";
 import Machine from "./pages/Machine/Machine";
 
 import logo from './logo.svg';
 import './App.css';
+import Navbar from "./pages/NavBar/NavBar";
 
 
 const firebaseConfig = {
@@ -25,7 +27,9 @@ const firebaseConfig = {
 
 function App() {
   return (
-    <Router>
+
+    <Router>    
+      <Navbar/>
       <div className="App">
       </div>
       <Routes>
