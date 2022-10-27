@@ -1,0 +1,26 @@
+
+.Machine-Overview {
+    font-family: sans-serif;
+    text-decoration: none;
+    margin-left: 45px;
+    margin-right: 45px;
+    margin-top: 45px;
+}
+
+.Machine-Overview img{
+    height: 100px;
+    width: 150px;
+    object-fit: contain;
+
+}
+
+.Machine-Overview h1 {
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.Machine-Overview h3 {
+    padding-top: 15px;
+}
+
+

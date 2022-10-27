@@ -1,0 +1,14 @@
+.NavBar a {
+    padding-left: 45px;
+    color:aliceblue;
+    padding-right: 50px;
+    
+}
+
+.NavBar .navbar {
+    list-style: none;
+  }
+
+.NavBar .nav-item a:hover {
+    color:#007bff;
+}
