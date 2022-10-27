@@ -3,7 +3,7 @@ import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { MachineCard } from "./components/MachineCard";
+import { MachineCard } from "./components/MachineCard/MachineCard";
 import './ListMachines.css';
 
 const ListMachines = () => {
