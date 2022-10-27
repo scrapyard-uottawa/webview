@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ListMachines from "./pages/ListMachines/ListMachines";
 import Machine from "./pages/Machine/Machine";
 
-import logo from './logo.svg';
 import './App.css';
 import Navbar from "./pages/NavBar/NavBar";
 
