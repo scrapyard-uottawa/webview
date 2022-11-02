@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../../../../App";
 import { getDocs, collection } from "firebase/firestore";
-
 import { DetectionCard } from "../DetectionCard/DetectionCard";
 
 export const DetectionList = ({ props }) => {
@@ -38,7 +37,7 @@ export const DetectionList = ({ props }) => {
                 </thead>
                 <tbody>
                 
-                {detections.map((detection) => (
+                {detections.map((detection) => (    
                     <DetectionCard props={detection} />
                 ))}
                 </tbody>
