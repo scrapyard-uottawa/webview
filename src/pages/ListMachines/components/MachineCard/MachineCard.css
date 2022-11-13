@@ -6,10 +6,15 @@ tr:hover {
 
 /* links */
 tr a{
-  color: #007bff;
+  color: #000;
   text-decoration: none;
 }
 
+/* on hover, the link doesn't change color but smoothly increases size to 1.1x it's original size */
 
+tr a:hover{
+  color: #000;
+  text-decoration: none;
+}
 
 
