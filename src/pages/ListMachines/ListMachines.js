@@ -35,10 +35,6 @@ const ListMachines = () => {
 
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Marker position={[0, 0]} icon={new Icon({iconUrl: mapMarker, iconSize: [32,32]})}>
-                        <Popup>0, 0
-                        </Popup>
-                    </Marker>
                     {machines.map((machine) => (
                         <Marker position={[machine.machineInfo.locationCord.latitude, machine.machineInfo.locationCord.longitude]} icon={new Icon({iconUrl: mapMarker, iconSize: [32,32]})}>
                             <Popup>{machine.machineInfo.locationName}
