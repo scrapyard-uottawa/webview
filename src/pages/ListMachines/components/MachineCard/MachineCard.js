@@ -6,6 +6,10 @@ function machineInfo() {
 }
 
 export const MachineCard = ({ machine }) => {
+    let capacityBlackBin = Math.round(machine.binCapacity.blackBin * 100) / 100;
+    let capacityBlueBin = Math.round(machine.binCapacity.blueBin * 100) / 100;
+    let capacityCompost = Math.round(machine.binCapacity.compost * 100) / 100;
+    let capacityGarbage = Math.round(machine.binCapacity.garbage * 100) / 100;
     return (
         <tr onClick={machineInfo}>
             <th class="link">
@@ -14,10 +18,10 @@ export const MachineCard = ({ machine }) => {
                 </Link>
             </th>
             <td>{machine.machineInfo.locationName}</td>
-            <td>{machine.binCapacity.blackBin}</td>
-            <td>{machine.binCapacity.blueBin}</td>
-            <td>{machine.binCapacity.compost}</td>
-            <td>{machine.binCapacity.garbage}</td>
+            <td>{capacityBlackBin}</td>
+            <td>{capacityBlueBin}</td>
+            <td>{capacityCompost}</td>
+            <td>{capacityGarbage}</td>
         </tr>
     );
 }  

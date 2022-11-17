@@ -4,6 +4,12 @@ import { PieChart } from 'react-minimal-pie-chart';
 export const BinCapacity = ({ props }) => {
     // if the props are not defined, return null
     if (!props) return <p>Data has not been loaded.</p>;
+
+    let capacityBlackBin = Math.round(props.blackBin * 100) / 100;
+    let capacityBlueBin = Math.round(props.blueBin * 100) / 100;
+    let capacityCompost = Math.round(props.compost * 100) / 100;
+    let capacityGarbage = Math.round(props.garbage * 100) / 100;
+
     return (
         <div className="bin-capacity">
             <table>
@@ -15,14 +21,14 @@ export const BinCapacity = ({ props }) => {
                 <th>Garbage</th>
             </tr>
             <tr>
-                    <td>{ props.blackBin}%</td>
-                <td>{props.blueBin}%</td>
-                <td>{props.compost}%</td>
-                <td>{props.garbage}%</td>
+                <td>{capacityBlackBin}%</td>
+                <td>{capacityBlueBin}%</td>
+                <td>{capacityCompost}%</td>
+                <td>{capacityGarbage}%</td>
             </tr>
             <tr>
                 <td><PieChart
-                    data={[{ value: (props.blackBin), color: '#000000' }]}
+                    data={[{ value: (capacityBlackBin), color: '#000000' }]}
                     totalValue={100}
                     lineWidth={20}
                     label={({ dataEntry }) => dataEntry.value}
@@ -35,7 +41,7 @@ export const BinCapacity = ({ props }) => {
                 />
                 </td>
                 <td><PieChart
-                    data={[{ value: (props.blueBin), color: '#2B65EC' }]}
+                    data={[{ value: (capacityBlueBin), color: '#2B65EC' }]}
                     totalValue={100}
                     lineWidth={20}
                     label={({ dataEntry }) => dataEntry.value}
@@ -48,7 +54,7 @@ export const BinCapacity = ({ props }) => {
                 />
                 </td>
                 <td><PieChart
-                    data={[{ value: (props.compost), color: '#2A6D4C' }]}
+                    data={[{ value: (capacityCompost), color: '#2A6D4C' }]}
                     totalValue={100}
                     lineWidth={20}
                     label={({ dataEntry }) => dataEntry.value}
@@ -61,7 +67,7 @@ export const BinCapacity = ({ props }) => {
                 />
                 </td>
                 <td><PieChart
-                    data={[{ value: (props.garbage), color: '#808080' }]}
+                    data={[{ value: (capacityGarbage), color: '#808080' }]}
                     totalValue={100}
                     lineWidth={20}
                     label={({ dataEntry }) => dataEntry.value}
