@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../../../../App";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, orderBy, query } from "firebase/firestore";
 import { DetectionCard } from "../DetectionCard/DetectionCard";
 
 export const DetectionList = ({ props }) => {
@@ -10,7 +10,7 @@ export const DetectionList = ({ props }) => {
     useEffect(() => {
         const getDetections = async () => {
             const detectionsRef = collection(db, "machines", machineID, "detections");
-            const detectionsSnapshot = await getDocs(detectionsRef);
+            const detectionsSnapshot = await getDocs(query(detectionsRef,orderBy('timeStamp','desc')));
             const detectionsList = detectionsSnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),

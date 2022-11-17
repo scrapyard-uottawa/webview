@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import './MachineCard.css';
 
+function machineInfo() {
+    < a href="/machine-info/${machine.id}" />
+}
+
 export const MachineCard = ({ machine }) => {
     return (
-        <tr>
+        <tr onClick={machineInfo}>
             <th class="link">
                 <Link to={`/machine-info/${machine.id}`}>
                     {machine.id}
@@ -16,5 +20,5 @@ export const MachineCard = ({ machine }) => {
             <td>{machine.binCapacity.garbage}</td>
         </tr>
     );
-}
+}  
 
