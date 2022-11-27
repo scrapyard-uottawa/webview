@@ -6,6 +6,7 @@ import {getDoc, doc} from 'firebase/firestore';
 import { MachineInfo } from './components/MachineInfo/MachineInfo';
 import { BinCapacity } from './components/BinCapacity/BinCapacity';
 import { DetectionList } from './components/DetectionList/DetectionList';
+import { AuthPage } from '../Auth/AuthPage';
 
 import './Machine.css';
 
@@ -23,6 +24,7 @@ const Machine = () => {
     }, []);
     return (
         <div class="Machine-Overview">
+            <AuthPage />
             <MachineInfo props={ machine.machineInfo } />
             <BinCapacity props={ machine.binCapacity } />
             <DetectionList props={ {machineID: machineID} } />
