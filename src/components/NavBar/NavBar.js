@@ -3,6 +3,8 @@ import { makeStyles } from '@mui/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import './NavBar.css';
 
 const useStyles = makeStyles({
     root: {
@@ -13,7 +15,7 @@ const useStyles = makeStyles({
     },
     title: {
         color: 'white',
-        fontSize: '1.5rem',
+        fontSize: '1.7rem',
         marginLeft: '20px'
     }, 
     button: {
@@ -31,9 +33,9 @@ export default function NavBar() {
       <Typography variant="h6" className={classes.title}>
         Scrapyard
       </Typography>
-      <Button style={{color: 'white'}}>Admin</Button>
-      <Button style={{color: 'white'}}>Dev</Button>
-      <Button style={{color: 'white'}}>Sign In</Button>
+      <Button style={{color: 'white', marginLeft: '20px'}}><Link to="/admin" className="link">Admin</Link></Button>
+      <Button style={{color: 'white'}}><Link to="/dev" className="link">Dev</Link></Button>
+      <Button style={{color: 'white'}}><Link to="/signin" className="link">Sign In</Link></Button>
     </Toolbar>
   );
 }

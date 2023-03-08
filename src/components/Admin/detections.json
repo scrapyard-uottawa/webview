@@ -1,0 +1,44 @@
+[
+    {
+      "id": "0001",
+      "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/DiYFfncUgQM7NreG00Bi.png",
+      "timeStamp": "08 Mar 2023 01:15:00",
+      "mlConfidence": 0.6756,
+      "wasteType": "Compost"
+    },
+    {
+      "id": "0002",
+      "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/MUs8LgM99fcBeQlS0xBg.png",
+      "timeStamp": "08 Mar 2023 01:00:00",
+      "mlConfidence": 0.5515,
+      "wasteType": "Garbage"
+    }, 
+    {
+        "id": "0003",
+        "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/biqXFoACdc2hRaTKPn85.png",
+        "timeStamp": "08 Mar 2023 01:00:00",
+        "mlConfidence": 0.8238,
+        "wasteType": "Black Bin"
+    }, 
+    {
+        "id": "0004",
+        "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/feNkN7KPY8YXkCbRRNoD.png",
+        "timeStamp": "08 Mar 2023 01:15:00",
+        "mlConfidence": 0.7949,
+        "wasteType": "Garbage"
+    },
+    {
+        "id": "0005",
+        "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/lh1hGQe8xKRl1cmgNkV7.png",
+        "timeStamp": "08 Mar 2023 01:00:00",
+        "mlConfidence": 0.9557,
+        "wasteType": "Garbage"
+    }, 
+    {
+        "id": "0006",
+        "image": "https://storage.googleapis.com/scrapyard-7fbdb.appspot.com/4HD4nUV5Kkkkt4AUxmSC/nXKHNWiBkJRCylIGbsXV.png",
+        "timeStamp": "08 Mar 2023 01:00:00",
+        "mlConfidence": 0.2315,
+        "wasteType": "Blue Bin"
+    }
+  ]

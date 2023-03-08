@@ -42,13 +42,18 @@ const uploadData = async (data) => {
       Authorization: `Basic ${btoa("Node:password")}`, // Encode the username and password in base64 format
     };
     
+    console.log(data)
+
      // Send the post request with axios and get the response
      const response = await axios.post(url, data, { headers });
      
+    console.log(response.data)
+
      // Return the response data
      return response.data;
    } catch (error) {
      // If there is an error, throw it
+     console.log(error)
      throw error;
    }
  };
@@ -65,6 +70,8 @@ const DataUpload = () => {
      Compost: "",
      Garbage: "",
    });
+
+   console.log(data, "DataUpload()")
    
    const [message, setMessage] = useState("");
    

@@ -1,0 +1,22 @@
+.machine-list {
+    width: 80%;
+    margin: auto;
+    height: 100vh;
+  }
+  
+  .machine-list h1 {
+    text-align: center;
+  }
+  
+  .machine-list .leaflet-container {
+    height: 400px;
+  }
+  
+  .machine-list table {
+    width: 100%;
+  }
+  
+  .machine-list table th,
+  .machine-list table td {
+    text-align: center;
+  }

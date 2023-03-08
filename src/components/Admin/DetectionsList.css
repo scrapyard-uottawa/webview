@@ -1,0 +1,17 @@
+.detections-list {
+    margin: 20px;
+  }
+  
+  .bin-capacity {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .bin {
+    width: 20%;
+    text-align: center;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
