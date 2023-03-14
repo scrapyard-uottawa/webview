@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import axios from "axios";
 
 // A function that validates the input data
-const validateData = (data) => {
+const validateDataMachine = (data) => {
   // Check if all fields are filled
   if (
     !data.MachineID ||
@@ -11,12 +11,9 @@ const validateData = (data) => {
     !data.Black_Bin ||
     !data.Blue_Bin ||
     !data.Compost ||
-    !data.Garbage
+    !data.Garbage ||
+    !data.GPS
   ) {
-    return false;
-  }
-  // Check if MachineID is a number
-  if (isNaN(data.MachineID)) {
     return false;
   }
   // Check if Black_Bin, Blue_Bin, Compost and Garbage are float numbers
@@ -33,10 +30,10 @@ const validateData = (data) => {
 };
 
 // A function that sends a post request to the node.js server with the input data
-const uploadData = async (data) => {
+const uploadMachine = async (data) => {
   try {
     // Set the url and headers for the request
-    const url = "http://localhost:5000/upload";
+    const url = "http://localhost:5000/uploadMachine";
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Basic ${btoa("Node:password")}`, // Encode the username and password in base64 format
@@ -69,6 +66,7 @@ const DataUpload = () => {
      Blue_Bin: "",
      Compost: "",
      Garbage: "",
+     GPS: ["",""],
    });
 
    console.log(data, "DataUpload()")
@@ -86,6 +84,27 @@ const DataUpload = () => {
         ...prevData,
         [name]: value,
       }));
+
+      // Update the state with the new value 
+      setData((prevData) => {
+        if (name === "Longitude" || name === "Latitude") {
+          // Update GPS array
+          const index = name === "Longitude" ? 0 : 1;
+          return {
+            ...prevData,
+            GPS: [
+              ...prevData.GPS.slice(0, index),
+              value,
+              ...prevData.GPS.slice(index + 1),
+            ],
+          };
+        } else {
+          return {
+            ...prevData,
+            [name]: value,
+          };
+        }
+      });
       
       // Reset the message 
       setMessage("");
@@ -99,12 +118,12 @@ const DataUpload = () => {
        event.preventDefault();
        
        // Validate the input data 
-       const isValid = validateData(data);
+       const isValid = validateDataMachine(data);
        
        if (isValid) {
          try {
            // Upload the data to the server and get back a message 
-           const result = await uploadData(data);
+           const result = await uploadMachine(data);
            
            // Set the message to display on screen 
            setMessage(result.message);
@@ -131,7 +150,7 @@ const DataUpload = () => {
               <TextField
                 name="MachineID"
                 label="Machine ID"
-                type="number"
+                type="text"
                 value={data.MachineID}
                 onChange={handleChange}
               />
@@ -147,7 +166,7 @@ const DataUpload = () => {
               <TextField
                 name="Black_Bin"
                 label="Black Bin"
-                type="number"
+                type="percent"
                 value={data.Black_Bin}
                 onChange={handleChange}
               />
@@ -176,6 +195,22 @@ const DataUpload = () => {
                 onChange={handleChange}
               />
 
+              <TextField
+                name="Longitude"
+                label="Longitude"
+                type="text"
+                value={data.GPS[0]}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="Latitude"
+                label="Latitude"
+                type="text"
+                value={data.GPS[1]}
+                onChange={handleChange}
+              />
+
               <Button type="submit" variant="contained" color="primary">
                 Upload
               </Button>
@@ -190,34 +225,3 @@ const DataUpload = () => {
 };
 
 export default DataUpload;
-
-    //   <div>
-    //     <TextField
-    //       label="Compost"
-    //       type="number"
-    //       id="compost"
-    //       name="compost"
-    //       onChange={handleChange}
-    //       required
-    //     />
-    //   </div>
-
-    //   <div>
-    //     <TextField
-    //       label="Garbage"
-    //       type="number"
-    //       id="garbage"
-    //       name="garbage"
-    //       onChange={handleChange}
-    //       required
-    //     />
-    //   </div>
-
-    //   <Button type="submit" variant="contained" color="primary">
-    //     Upload
-    //   </Button>
-    // </form>
-//   );
-// };
-
-// export default DataUpload;

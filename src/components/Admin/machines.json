@@ -7,7 +7,8 @@
         "blackBin": 0.25,
         "blueBin": 0.35,
         "compost": 0.15,
-        "garbage": 0.25
+        "garbage": 0.25, 
+        "userAssigned": ["Punit"]
     },
     {
         "id": "M002",
@@ -17,7 +18,8 @@
         "blackBin": 0.3,
         "blueBin": 0.4,
         "compost": 0.1,
-        "garbage": 0.2
+        "garbage": 0.2, 
+        "userAssigned": ["Stefan", "Hassan"]
     },
     {
         "id": "M003",
@@ -27,7 +29,8 @@
         "blackBin": 0.2, 
         "blueBin": 0.3, 
         "compost": 0.2, 
-        "garbage": 0.3 
+        "garbage": 0.3, 
+        "userAssigned": ["Punit", "Rachel", "Salma"]
     }, 
     {
         "id":"M004", 
@@ -37,6 +40,7 @@
         "blackBin":0.25, 
         "blueBin":0.35, 
         "compost":0.15, 
-        "garbage":0.25 
+        "garbage":0.25, 
+        "userAssigned":["Rachel", "Kaitlyn"]
     }
 ]

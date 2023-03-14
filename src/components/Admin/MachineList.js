@@ -1,23 +1,38 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import { Link } from 'react-router-dom';
-import machinesJSON from './machines.json';
 
 const icon = new L.Icon({
   iconUrl: 'images/marker-icon.png',
   iconRetinaUrl: 'images/marker-icon-2x.png',
+  iconAnchor: [10, 35], 
+  iconSize: [20, 35],
 });
 
 const MachineList = () => {
+  const [machinesData, setMachinesData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/getMachines');
+        const data = await res.json();
+        setMachinesData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="machine-list">
       <h1>List of Machines</h1>
-      <MapContainer center={[45.41949167957291, -75.6785976087304]} zoom={15} scrollWheelZoom={false} style={{height: '10vh'}}>
+      <MapContainer center={[45.41949167957291,-75.6785976087304]} zoom={15} scrollWheelZoom={true} style={{height: '20vh'}}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {machinesJSON.map((machine) => (
-          <Marker key={machine.id} position={[machine.lat, machine.lng]} icon={icon} />
+        {machinesData.map((machine) => (
+          <Marker key={machine.MachineID} position={[machine.GPS[0], machine.GPS[1]]} icon={icon} />
         ))}
       </MapContainer>
       <TableContainer>
@@ -33,14 +48,16 @@ const MachineList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {machinesJSON.map((machine) => (
-              <TableRow key={machine.id}>
-                <TableCell><Link to="/detections">{machine.id}</Link></TableCell> 
-                <TableCell>{machine.name}</TableCell>
-                <TableCell>{(machine.blackBin * 100).toFixed(2)}%</TableCell> 
-                <TableCell>{(machine.blueBin * 100).toFixed(2)}%</TableCell>
-                <TableCell>{(machine.compost * 100).toFixed(2)}%</TableCell>
-                <TableCell>{(machine.garbage * 100).toFixed(2)}%</TableCell>
+            {machinesData.map((machine) => (
+              <TableRow key={machine.MachineID}>
+                <TableCell>
+                  <Link to={`/detections/${machine.MachineID}`}> {machine.MachineID} </Link>
+                </TableCell> 
+                <TableCell>{machine.Machine_Name}</TableCell> 
+                <TableCell>{(machine.Black_Bin * 100).toFixed(2)}%</TableCell> 
+                <TableCell>{(machine.Blue_Bin * 100).toFixed(2)}%</TableCell>
+                <TableCell>{(machine.Compost * 100).toFixed(2)}%</TableCell>
+                <TableCell>{(machine.Garbage * 100).toFixed(2)}%</TableCell>
               </TableRow>
             ))}
           </TableBody>
