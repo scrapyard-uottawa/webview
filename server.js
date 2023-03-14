@@ -18,7 +18,7 @@ app.post("/uploadMachine", async (req, res) => {
     const client = await pool.connect();
     console.log("Connected to the database");
     const query =
-      "INSERT INTO \"public\".\"Machine_List\" (\"MachineID\" , \"Machine_Name\" , \"Black_Bin\" , \"Blue_Bin\" , \"Compost\" , \"Garbage\" ) VALUES ($1,$2,$3,$4,$5,$6)";
+      "INSERT INTO \"public\".\"Machine_List\" (\"MachineID\" , \"Machine_Name\" , \"Black_Bin\" , \"Blue_Bin\" , \"Compost\" , \"Garbage\" , \"GPS\" ) VALUES ($1,$2,$3,$4,$5,$6,$7)";
     const values = [
       req.body.MachineID,
       req.body.Machine_Name,
@@ -26,6 +26,7 @@ app.post("/uploadMachine", async (req, res) => {
       req.body.Blue_Bin,
       req.body.Compost,
       req.body.Garbage,
+      req.body.GPS,
     ];
     console.log(values);
     await client.query(query, values); // add await here
@@ -33,6 +34,23 @@ app.post("/uploadMachine", async (req, res) => {
     await client.release(); // add await here
     console.log("Connection released");
     res.json({ message: "Data uploaded successfully" });
+  } catch (error) {
+    // If there is an error, send back an error message
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
+});
+
+app.get("/getMachines", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log("Connected to the database");
+    const query = 'SELECT * FROM "public"."Machine_List"';
+    const result = await client.query(query); // add await here
+    console.log("Data retrieved successfully");
+    await client.release(); // add await here
+    console.log("Connection released");
+    res.json(result.rows); // send back the rows as JSON
   } catch (error) {
     // If there is an error, send back an error message
     res.status(500).json({ message: error.message });
@@ -62,6 +80,22 @@ app.post("/uploadTrash", async (req, res) => {
     res.json({ message: "Data uploaded successfully" });
   } catch (error) {
     // If there is an error, send back an error message
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
+});
+
+app.get("/getDetections", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log("Connected to the database");
+    const query = 'SELECT * FROM "public"."Trash_Info"';
+    const result = await client.query(query);
+    console.log("Data retrieved successfully");
+    await client.release();
+    console.log("Connection released");
+    res.json(result.rows);
+  } catch (error) {
     res.status(500).json({ message: error.message });
     console.log(error.message);
   }
