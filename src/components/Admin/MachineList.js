@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import { Link } from 'react-router-dom';
+import './MachineList.css';
 
 const icon = new L.Icon({
   iconUrl: 'images/marker-icon.png',
@@ -17,7 +18,7 @@ const MachineList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:5000/getMachines');
+        const res = await fetch('http://192.168.2.15:5000/getMachines');
         const data = await res.json();
         setMachinesData(data);
       } catch (error) {

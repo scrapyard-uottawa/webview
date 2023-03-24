@@ -33,124 +33,106 @@ const validateDataTrash = (data) => {
    return true;
 };
 
-// A function that sends a post request to the node.js server with the input data
-const uploadTrash = async (data) => {
-   try {
-     // Set the url and headers for the request
-    const url = "http://localhost:5000/uploadTrash";
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Basic ${btoa("Node:password")}`, // Encode the username and password in base64 format
+const uploadTrash = async (d) => {
+  try {
+    const e = "http://localhost:5000/uploadTrash";
+    const t = {
+      Authorization: `Basic ${btoa("Node:password")}`,
+      "Content-Type": "multipart/form-data", // change this header
     };
-     
-     console.log(data)
+    // create a FormData object
+    let formData = new FormData();
+    // append the file and other data
+    formData.append("Image", d.Image);
+    formData.append("MachineID", d.MachineID);
+    formData.append("ID", d.ID);
+    formData.append("TimeStamp", d.TimeStamp);
+    formData.append("ML_Confidence", d.ML_Confidence);
+    formData.append("WasteType", d.WasteType);
 
-      // Send the post request with axios and get the response
-      const response = await axios.post(url, data, { headers });
-      
-     console.log(response.data)
-     return response.data;
-   } catch (error) {
-     console.error(error);
-     throw error;
-   }
+    const r = await axios.post(e, formData, { headers: t }); // send formData instead of d
+    return r.data;
+  } catch (e) {
+    throw e;
+  }
 };
 const TrashForm = () => {
-    const [data, setData] = useState({
-      MachineID: "",
-      ID: "",
-      TimeStamp: "",
-      ML_Confidence: "",
-      WasteType: "",
-      Image: null,
-    });
-
-    // A handler function that updates the state when the text fields change 
-    const handleChange = (event) => {
-      
-       // Get the name and value of the changed field 
-       const { name, value } = event.target;
-       
-       setData((prevData) => ({
-         ...prevData,
-         [name]: value,
-         }));
-       
-    };
+  const [d, setData] = useState({
+    MachineID: "",
+    ID: "",
+    TimeStamp: "",
+    ML_Confidence: "",
+    WasteType: "",
+    Image: null,
+  });
+  const handleChange = (e) => {
+    const { name: t, value: r } = e.target;
+    setData((e) => ({ ...e, [t]: r }));
+  };
+  const handleFileChange = (e) => {
+    setData((t) => ({ ...t, Image: e.target.files[0] }));
+  };
+  const handleSubmit = async (e) => {
     
-     // A handler function that updates the state when an image file is selected
-     const handleFileChange = (event) => {
-       setData((prevData) => ({
-          ...prevData,
-          Image: event.target.files[0],
-        }));
+     // define a validateDataTrash function that checks if the data is valid
+     const validateDataTrash = (data) => {
+       // check if all fields are filled
+       for (let key in data) {
+         if (!data[key]) return false;
+       }
+       // check if image file is valid
+       if (!data.Image.type.startsWith("image/")) return false;
+       return true;
      };
-     
-     // A handler function that submits the form when the button is clicked 
-     const handleSubmit = async (event) => {
-        // Prevent default behavior of form submission 
-        event.preventDefault();
-        
-        // Validate the input data 
-        if (validateDataTrash(data)) {
-          try {
-            // Upload the data to the server and get back a message 
-            await uploadTrash(data);           
-          } catch (error) {
-            console.log(error)
-          }
-        } else {
-          console.log('Invalid input data')
-        }
-    };
-    
-    return (
-      <div className="TrashForm">
-        <h1>Trash Form</h1>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            name="MachineID"
-            label="Machine ID"
-            type="text"
-            value={data.MachineID}
-            onChange={handleChange}
-          />
-          <TextField
-            name="ID"
-            label="ID"
-            type="text"
-            value={data.ID}
-            onChange={handleChange}
-          />
-          <TextField
-            name="TimeStamp"
-            label=""
-            type="datetime-local"
-            value={data.TimeStamp}
-            onChange={handleChange}
-          />
-          <TextField
-            name="ML_Confidence"
-            label="ML Confidence"
-            type="number"
-            step="any"
-            value={data.ML_Confidence}
-            onChange={handleChange}
-          />
-          <TextField
-            name="WasteType"
-            label="Waste Type"
-            type="text"
-            value={data.WasteType}
-            onChange={handleChange}
-          />
-          <input type="file" onChange={handleFileChange} />
-          <Button type="submit" variant="contained" color="primary">
-            Upload
-          </Button>
-        </form>
-      </div>
-    );
+
+     e.preventDefault();
+     validateDataTrash(d) && (await uploadTrash(d)); // use validateDataTrash function here
+   };
+   return (
+     <div className="TrashForm">
+       <h1>Trash Form</h1>
+       <form onSubmit={handleSubmit}>
+         <TextField
+           name="MachineID"
+           label="Machine ID"
+           type="text"
+           value={d.MachineID}
+           onChange={handleChange}
+         />
+         <TextField
+           name="ID"
+           label="ID"
+           type="text"
+           value={d.ID}
+           onChange={handleChange}
+         />
+         <TextField
+           name="TimeStamp"
+           label=""
+           type="datetime-local"
+           value={d.TimeStamp}
+           onChange={handleChange}
+         />
+         <TextField
+           name="ML_Confidence"
+           label="ML Confidence"
+           type="number"
+           step="any"
+           value={d.ML_Confidence}
+           onChange={handleChange}
+         />
+         <TextField
+           name="WasteType"
+           label="Waste Type"
+           type="text"
+           value={d.WasteType}
+          onChange={handleChange} 
+        /> 
+        <input type= "file" onChange= {handleFileChange} /> 
+        <Button type= "submit" variant= "contained" color= "primary"> Upload </Button> 
+      </form> 
+     </div>
+   );
 };
 
 export default TrashForm;

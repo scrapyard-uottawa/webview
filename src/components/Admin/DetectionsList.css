@@ -15,3 +15,7 @@
   .table-container {
     margin-top: 20px;
   }
+
+  .detections-list .leaflet-container {
+    height: 400px;
+  }
