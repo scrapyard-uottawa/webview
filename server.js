@@ -1,6 +1,7 @@
 const express = require("express");
 const pg = require("pg");
 const cors = require("cors");
+const multer = require("multer");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -11,6 +12,36 @@ const pool = new pg.Pool({
   database: "ScrapYard",
   user: "Node",
   password: "password",
+});
+
+// create multer storage engine
+const storage = multer.memoryStorage(); // use memory storage instead of disk storage
+
+// create multer middleware function
+const upload = multer({ storage: storage });
+
+// create a route for uploading images
+app.post("/uploadTrash", upload.single("Image"), async (req, res) => {
+  try {
+    // get the data from req.body and req.file
+    const { MachineID, ID, TimeStamp, ML_Confidence, WasteType } = req.body;
+    const Image = req.file.buffer; // use buffer instead of filename
+
+    // construct the query string for inserting data into database
+    const query =
+      'INSERT INTO "public"."Trash_Info" ("MachineID" , "ID" , "TimeStamp" , "ML_Confidence" , "WasteType", "Image" ) VALUES ($1,$2,$3,$4,$5,$6)';
+    const values = [MachineID, ID, TimeStamp, ML_Confidence, WasteType, Image];
+
+    // execute the query with values array using connection pool client
+    await pool.query(query, values);
+    console.log("Data uploaded successfully");
+    
+    res.json({ message: "Data uploaded successfully" });
+  } catch (error) {
+    // If there is an error, send back an error message
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
 });
 
 app.post("/uploadMachine", async (req, res) => {
@@ -58,7 +89,7 @@ app.get("/getMachines", async (req, res) => {
   }
 });
 
-app.post("/uploadTrash", async (req, res) => {
+/* app.post("/uploadTrash", async (req, res) => {
   try {
     const client = await pool.connect();
     console.log("Connected to the database");
@@ -83,13 +114,13 @@ app.post("/uploadTrash", async (req, res) => {
     res.status(500).json({ message: error.message });
     console.log(error.message);
   }
-});
+}); */
 
 app.get("/getDetections", async (req, res) => {
   try {
     const client = await pool.connect();
     console.log("Connected to the database");
-    const query = 'SELECT * FROM "public"."Trash_Info"';
+    const query = 'SELECT \"MachineID\", \"ID\", \"TimeStamp\", \"ML_Confidence\", \"WasteType\", encode(\"Image\", \'base64\') as base64 FROM "public"."Trash_Info"';
     const result = await client.query(query);
     console.log("Data retrieved successfully");
     await client.release();
