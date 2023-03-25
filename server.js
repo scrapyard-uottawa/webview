@@ -92,6 +92,26 @@ app.post("/uploadUser", async (req, res) => {
   }
 });
 
+app.post("/removeUser", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log("Connected to the database");
+    const query =
+      "UPDATE \"public\".\"Machine_List\" SET \"Users\" = array_remove(\"Users\", $1) WHERE \"MachineID\" = $2";
+    const values = [req.body.User, req.body.MachineID];
+    console.log(values);
+    await client.query(query, values); // add await here
+    console.log("User removed successfully");
+    await client.release(); // add await here
+    console.log("Connection released");
+    res.json({ message: "User removed successfully" });
+  } catch (error) {
+    // If there is an error, send back an error message
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
+});
+
 app.get("/getMachines", async (req, res) => {
   try {
     const client = await pool.connect();
