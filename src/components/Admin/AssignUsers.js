@@ -69,6 +69,24 @@ const AssignUsers = () => {
         }
     };
 
+    const onRemove = async (user) => {
+      try {
+        // Send a post request to the server with the user and machineID
+        const res = await fetch("http://192.168.2.15:5000/removeUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ User: user, MachineID: machineID }),
+        });
+        const data = await res.json();
+        // Update the users state by filtering out the user
+        setUsers((prevUsers) => prevUsers.filter((u) => u !== user));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     return (
         <div>
         <h2>Add users to {machineID}</h2>
@@ -81,24 +99,35 @@ const AssignUsers = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Users</TableCell>
+                    <TableCell>Remove</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* Slice the users array based on the page and rowsPerPage */}
-                  {users
-                    ? users
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((user) => (
-                          <TableRow key={user}>
-                            <TableCell>{user}</TableCell>
-                          </TableRow>
-                        ))
-                    : (
-                      <TableRow>
-                        <TableCell></TableCell>
-                      </TableRow>
-                    )}
-                </TableBody>
+                {/* Slice the users array based on the page and rowsPerPage */}
+                {users
+                  ? users
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((user) => (
+                        <TableRow key={user}>
+                          <TableCell>{user}</TableCell>
+                          {/* Add a new TableCell with a Button that calls onRemove */}
+                          <TableCell>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={() => onRemove(user)}
+                            >
+                              Remove
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                  : (
+                    <TableRow>
+                      <TableCell></TableCell>
+                    </TableRow>
+                  )}
+              </TableBody>
               </Table>
               {/* Use TablePagination outside of Table to prevent scrolling */}
               <TablePagination
