@@ -14,7 +14,7 @@ const DetectionPage = () => {
     const fetchData = async () => {
       try {
         // Use await to get the response
-        const response = await fetch('http://192.168.2.15:5000/getDetections');
+        const response = await fetch('http://localhost:5000/getDetections');
         // Convert it to json
         const data = await response.json();
         // Filter the data by MachineID and ID

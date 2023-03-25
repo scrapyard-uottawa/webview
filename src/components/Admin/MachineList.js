@@ -24,7 +24,7 @@ const MachineList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://192.168.2.15:5000/getMachines");
+        const res = await fetch("http://localhost:5000/getMachines");
         const data = await res.json();
         setMachinesData(data);
       } catch (error) {
@@ -33,7 +33,7 @@ const MachineList = () => {
     };
     const fetchCenter = async () => {
       try {
-        const res = await fetch("http://192.168.2.15:5000/getMachines");
+        const res = await fetch("http://localhost:5000/getMachines");
         const data = await res.json();
         let center = [0, 0];
         for (let i = 0; i < data.length; i++) {

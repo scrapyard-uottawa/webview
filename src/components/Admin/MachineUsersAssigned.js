@@ -29,7 +29,7 @@ const MachineUsersAssigned = () => {
       // Use try/catch to handle errors
       try {
         // Make a GET request to your server endpoint
-        const response = await fetch('http://192.168.2.15:5000/getMachines');
+        const response = await fetch('http://localhost:5000/getMachines');
         // Check if the response is ok
         if (response.ok) {
           // Parse the response as JSON

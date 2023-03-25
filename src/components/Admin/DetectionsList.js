@@ -31,8 +31,8 @@ const DetectionsList = () => {
   useEffect(() => {
     // create an array of promises for both fetch requests
     const promises = [
-      fetch('http://192.168.2.15:5000/getDetections'),
-      fetch('http://192.168.2.15:5000/getMachines')
+      fetch('http://localhost:5000/getDetections'),
+      fetch('http://localhost:5000/getMachines')
     ];
 
     // use Promise.all() to wait for all promises to resolve
