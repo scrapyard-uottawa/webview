@@ -11,6 +11,7 @@ import HomePage from './components/HomePage/HomePage';
 import DetectionPage from './components/Admin/DetectionPage';
 import MachineUsersAssigned from './components/Admin/MachineUsersAssigned';
 import TrashForm from './components/DataUpload/TrashForm';
+import AssignUsers from './components/Admin/AssignUsers';
 
 class App extends Component {
     render() {
@@ -25,8 +26,9 @@ class App extends Component {
               <Route path="/dev" element={<DataUpload  />} />
               <Route path="/dev2" element={<TrashForm  />} />
               <Route path="/signin" default element={<SignIn  />} />
-              <Route path='/individualDetection' element={<DetectionPage />} />
+              <Route path='/individualDetection/:mid/:tid' element={<DetectionPage />} />
               <Route path='/usersAssigned' element={<MachineUsersAssigned />} />
+              <Route path='/addUsers/:id' element={<AssignUsers />} />
             </Routes>
           </Router>
         </div>

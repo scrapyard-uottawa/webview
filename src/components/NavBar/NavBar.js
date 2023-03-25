@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import { textTransform } from '@mui/system';
 
 const useStyles = makeStyles({
     root: {
@@ -16,13 +17,14 @@ const useStyles = makeStyles({
     title: {
         color: 'white',
         fontSize: '1.7rem',
-        marginLeft: '20px'
+        marginLeft: '20px',
+        textTransform: 'none',
     }, 
     button: {
         color: 'white',
         fontSize: '1.5rem',
         marginLeft: '20px'
-    }
+    },
 });
 
 export default function NavBar() {
@@ -30,11 +32,16 @@ export default function NavBar() {
 
   return (
     <Toolbar className={classes.root}>
-      <Typography variant="h6" className={classes.title}>
-        Scrapyard
-      </Typography>
+      <Button style={{color: 'white'}}>
+        <Typography variant="h6" className={classes.title}>
+          <Link to="/" className="link">
+            ScrapYard
+          </Link>
+        </Typography>
+      </Button>
       <Button style={{color: 'white', marginLeft: '20px'}}><Link to="/admin" className="link">Admin</Link></Button>
-      <Button style={{color: 'white'}}><Link to="/dev" className="link">Dev</Link></Button>
+      <Button style={{color: 'white'}}><Link to="/usersAssigned" className="link">Assign Users</Link></Button>
+      <div style={{flexGrow: 1}}></div>
       <Button style={{color: 'white'}}><Link to="/signin" className="link">Sign In</Link></Button>
     </Toolbar>
   );

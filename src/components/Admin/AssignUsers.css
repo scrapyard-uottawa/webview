@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    padding: 5rem;
+  }
+  
+  /* Use a table class to set the width */
+  .table {
+    width: 45%;
+  }
+  
+  /* Use a form class to set the width and alignment */
+  .form {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

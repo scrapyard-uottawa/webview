@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -8,14 +9,13 @@ function HomePage() {
         Welcome to ScrapYard!
       </Typography>
       <Typography variant="h6" align="center">
-        Would you like to demo or sign in and use the admin panel?
+        Sign in to get started! 
       </Typography>
       <div style={{ margin: 16 }}>
-        <Button variant="contained" color="primary">
-          Demo
-        </Button>
         <Button variant="contained" color="secondary" style={{ marginLeft: 8 }}>
-          Sign in
+          <Link to="/signin" className="link">
+            Sign in
+          </Link>
         </Button>
       </div>
     </div>

@@ -1,9 +1,37 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import imageJSON from './detections.json';
+import { useParams } from 'react-router-dom';
+import './DetectionPage.css';
 
 const DetectionPage = () => {
-  const { id, image, timeStamp, mlConfidence, wasteType } = imageJSON[0];
+  const [detectionData, setDetectionData] = useState({});
+  const MachineID = useParams().mid;
+  const TrashID = useParams().tid;
+
+ // Use useEffect to fetch data only once when component mounts
+ useEffect(() => {
+    // Define a function to fetch data
+    const fetchData = async () => {
+      try {
+        // Use await to get the response
+        const response = await fetch('http://192.168.2.15:5000/getDetections');
+        // Convert it to json
+        const data = await response.json();
+        // Filter the data by MachineID and ID
+        const detectionsData = data.filter(
+          (row) => row.MachineID === MachineID && row.ID === TrashID
+        );
+        // Set the state with the filtered data
+        setDetectionData(detectionsData[0]);
+      } catch (error) {
+        // Handle any errors
+        alert(error);
+      }
+    };
+    // Call the function
+    fetchData();
+  }, [MachineID, TrashID]); // Pass MachineID and TrashID as dependencies
+
 
   return (
     <Box
@@ -12,10 +40,10 @@ const DetectionPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        height: '90vh',
       }}
     >
-      <img src={image} alt="detection" width="50%" />
+      <img className='img' src={`data:image/png;base64,${detectionData.base64}`} alt="detection" width="50%" />
       <Box
         sx={{
           display: 'flex',
@@ -26,9 +54,9 @@ const DetectionPage = () => {
           marginTop: 2,
         }}
       >
-        <Typography variant="h6">ID: {id}</Typography>
+        <Typography variant="h6">ID: {detectionData.ID}</Typography>
         <Typography variant="h6">
-          Time Stamp: {new Date(timeStamp).toLocaleString()}
+          Time Stamp: {new Date(detectionData.TimeStamp).toLocaleString()}
         </Typography>
       </Box>
       <Box
@@ -42,10 +70,9 @@ const DetectionPage = () => {
         }}
       >
         <Typography variant="h6">
-          ML Confidence:{' '}
-          {(mlConfidence * 100).toFixed(2) /* convert to percentage */}%
+          ML Confidence: {(detectionData.ML_Confidence * 100).toFixed(2) /* convert to percentage */}%
         </Typography>
-        <Typography variant="h6">Waste Type: {wasteType}</Typography>
+        <Typography variant="h6">Waste Type: {detectionData.WasteType}</Typography>
       </Box>
     </Box>
   );

@@ -1,0 +1,20 @@
+.machine-users-assigned {
+    margin: 20px;
+  }
+  
+  .machine-users-assigned h1 {
+    text-align: center;
+  }
+  
+  .machine-users-assigned .leaflet-container {
+    height: 400px;
+  }
+  
+  .machine-users-assigned table {
+    width: 100%;
+  }
+  
+  .machine-users-assigned table th,
+  .machine-users-assigned table td {
+    text-align: center;
+  }
