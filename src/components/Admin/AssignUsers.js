@@ -13,12 +13,13 @@ const AssignUsers = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch("http://192.168.2.15:5000/getMachines");
+          const res = await fetch("http://localhost:5000/getMachines");
           const data = await res.json();
           // Assuming data is an array of objects with a Users property
           // Find the object that matches the machineID and set its Users as the state
           const machine = data.find((m) => m.MachineID === machineID);
           if (machine) {
+            console.log(machine);
             setUsers(machine.Users);
           }
         } catch (error) {
