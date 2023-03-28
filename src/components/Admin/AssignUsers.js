@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, TablePagination, Paper, TextField, Button } from '@mui/material';
 import './AssignUsers.css';
+import NavBar from '../NavBar/NavBar';
 
 const AssignUsers = () => {
     const machineID = useParams().id;
@@ -89,6 +90,7 @@ const AssignUsers = () => {
 
     return (
         <div>
+          <NavBar />
         <h2>Add users to {machineID}</h2>
         {/* Use a div with className="container" */}
         <div className="container">

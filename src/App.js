@@ -7,6 +7,8 @@ import Navbar from './components/NavBar/NavBar';
 import SignIn from './components/SignIn/SignIn';
 import DetectionsList from './components/Admin/DetectionsList';
 import MachineList from './components/Admin/MachineList';
+import MachineList2 from './components/Admin/MachineListDev';
+import MachineList3 from './components/Admin/MachineListUser';
 import HomePage from './components/HomePage/HomePage';
 import DetectionPage from './components/Admin/DetectionPage';
 import MachineUsersAssigned from './components/Admin/MachineUsersAssigned';
@@ -18,17 +20,19 @@ class App extends Component {
       return (
         <div className="App">
           <Router>
-          <Navbar />
+          {/* <Navbar /> */}
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/admin" element={<MachineList />} />
+              <Route path="/admin/:id" element={<MachineList />} />
+              <Route path="/admin2" element={<MachineList2 />} />
+              <Route path="/admin3" element={<MachineList3 />} />
               <Route path="/detections/:id" element={<DetectionsList />} />
-              <Route path="/dev" element={<DataUpload  />} />
-              <Route path="/dev2" element={<TrashForm  />} />
+              <Route path="/dev/:id" element={<DataUpload  />} />
+              <Route path="/dev2/:id" element={<TrashForm  />} />
               <Route path="/signin" default element={<SignIn  />} />
-              <Route path='/individualDetection/:mid/:tid' element={<DetectionPage />} />
-              <Route path='/usersAssigned' element={<MachineUsersAssigned />} />
-              <Route path='/addUsers/:id' element={<AssignUsers />} />
+              <Route path='/individualDetection/:mid/:tid/:id' element={<DetectionPage />} />
+              <Route path='/usersAssigned/:id' element={<MachineUsersAssigned />} />
+              <Route path='/addUsers/:id/:id' element={<AssignUsers />} />
             </Routes>
           </Router>
         </div>

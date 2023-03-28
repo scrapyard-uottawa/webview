@@ -7,6 +7,7 @@ import L from "leaflet";
 import marker from 'leaflet/dist/images/marker-icon.png';
 import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
 import './MachineUsersAssigned.css';
+import NavBar from '../NavBar/NavBar';
 
 const icon = new L.Icon({
   iconUrl: marker,
@@ -83,6 +84,8 @@ const MachineUsersAssigned = () => {
   }
 
   return (
+    <div>
+    <NavBar />
     <div className="machine-users-assigned">
       <h1>Users Assigned</h1>
       <MapContainer
@@ -119,6 +122,7 @@ const MachineUsersAssigned = () => {
           </TableBody>
         </Table>
       </TableContainer>
+    </div>
     </div>
   );
 };

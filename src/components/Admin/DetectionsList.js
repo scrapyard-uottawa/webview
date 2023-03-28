@@ -6,6 +6,7 @@ import L from 'leaflet';
 import marker from 'leaflet/dist/images/marker-icon.png';
 import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
 import { Link, useParams } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 
 const icon = new L.Icon({
   iconUrl: marker,
@@ -83,6 +84,8 @@ const DetectionsList = () => {
   }
 
   return (
+    <div>
+    <NavBar />
     <div className="detections-list">
       <h2>Machine Name: {machineName}</h2>
       <MapContainer
@@ -163,7 +166,7 @@ const DetectionsList = () => {
             </Table>
           </TableContainer>
         </div>
-
+        </div>
   );
 };
 

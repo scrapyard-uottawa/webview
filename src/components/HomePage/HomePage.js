@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 
 function HomePage() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh' }}>
+    <div>
+      <NavBar />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh' }}>
       <Typography variant="h2" align="center">
         Welcome to ScrapYard!
       </Typography>
@@ -18,6 +21,7 @@ function HomePage() {
           </Link>
         </Button>
       </div>
+    </div>
     </div>
   );
 }

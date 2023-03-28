@@ -62,7 +62,7 @@ const MachineList = () => {
 
   return (
     <div>
-      <NavBar />
+    <NavBar />
     <div className="machine-list">
       <h1>List of Machines</h1>
       <MapContainer
@@ -110,7 +110,7 @@ const MachineList = () => {
         </Table>
       </TableContainer>
     </div>
-    </div>
+</div>
   );
 };
 

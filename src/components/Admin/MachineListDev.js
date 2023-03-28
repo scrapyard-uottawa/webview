@@ -111,6 +111,7 @@ const MachineList = () => {
       </TableContainer>
     </div>
     </div>
+
   );
 };
 

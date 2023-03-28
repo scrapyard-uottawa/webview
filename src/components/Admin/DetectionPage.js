@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import './DetectionPage.css';
+import NavBar from '../NavBar/NavBar';
 
 const DetectionPage = () => {
   const [detectionData, setDetectionData] = useState({});
@@ -34,6 +35,8 @@ const DetectionPage = () => {
 
 
   return (
+    <div>
+    <NavBar />
     <Box
       sx={{
         display: 'flex',
@@ -75,6 +78,7 @@ const DetectionPage = () => {
         <Typography variant="h6">Waste Type: {detectionData.WasteType}</Typography>
       </Box>
     </Box>
+    </div>
   );
 };
 

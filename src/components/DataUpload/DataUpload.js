@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
+import NavBar from '../NavBar/NavBar';
 
 // A function that validates the input data
 const validateDataMachine = (data) => {
@@ -140,7 +141,9 @@ const DataUpload = () => {
    };
    
    return (
-     
+
+       <div>
+      <NavBar />
        <div className="DataUpload">
          
           <h1>Data Upload</h1>
@@ -219,6 +222,7 @@ const DataUpload = () => {
 
           <p>{message}</p>
 
+        </div>
         </div>
 
     );

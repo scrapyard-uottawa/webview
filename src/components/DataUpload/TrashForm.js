@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
+import NavBar from '../NavBar/NavBar';
 
 // A function that validates the input data
 const validateDataTrash = (data) => {
@@ -89,6 +90,8 @@ const TrashForm = () => {
      validateDataTrash(d) && (await uploadTrash(d)); // use validateDataTrash function here
    };
    return (
+    <div>
+    <NavBar />
      <div className="TrashForm">
        <h1>Trash Form</h1>
        <form onSubmit={handleSubmit}>
@@ -131,6 +134,7 @@ const TrashForm = () => {
         <input type= "file" onChange= {handleFileChange} /> 
         <Button type= "submit" variant= "contained" color= "primary"> Upload </Button> 
       </form> 
+     </div>
      </div>
    );
 };
