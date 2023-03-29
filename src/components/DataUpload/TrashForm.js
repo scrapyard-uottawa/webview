@@ -35,7 +35,7 @@ const validateDataTrash = (data) => {
 
 const uploadTrash = async (d) => {
   try {
-    const e = "http://localhost:5000/uploadTrash";
+    const e = `${process.env.REACT_APP_API_ENDPOINT}/uploadTrash`;
     const t = {
       Authorization: `Basic ${btoa("Node:password")}`,
       "Content-Type": "multipart/form-data", // change this header

@@ -33,7 +33,7 @@ const validateDataMachine = (data) => {
 const uploadMachine = async (data) => {
   try {
     // Set the url and headers for the request
-    const url = "http://localhost:5000/uploadMachine";
+    const url = `${process.env.REACT_APP_API_ENDPOINT}/uploadMachine`;
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Basic ${btoa("Node:password")}`, // Encode the username and password in base64 format
@@ -51,6 +51,7 @@ const uploadMachine = async (data) => {
    } catch (error) {
      // If there is an error, throw it
      console.log(error)
+    //  console.log(process.env.REACT_APP_API_ENDPOINT)
      throw error;
    }
  };
@@ -68,8 +69,6 @@ const DataUpload = () => {
      Garbage: "",
      GPS: ["",""],
    });
-
-   console.log(data, "DataUpload()")
    
    const [message, setMessage] = useState("");
    

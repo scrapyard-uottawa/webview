@@ -50,7 +50,7 @@ const AssignUsers = () => {
         event.preventDefault();
         try {
             // Send a post request to the server with the newUser and machineID
-            const res = await fetch("http://localhost:5000/uploadUser", {
+            const res = await fetch("${process.env.REACT_APP_API_ENDPOINT}/uploadUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -73,7 +73,7 @@ const AssignUsers = () => {
     const onRemove = async (user) => {
       try {
         // Send a post request to the server with the user and machineID
-        const res = await fetch("http://localhost:5000/removeUser", {
+        const res = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/removeUser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

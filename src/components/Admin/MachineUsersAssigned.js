@@ -29,7 +29,7 @@ const MachineUsersAssigned = () => {
       // Use try/catch to handle errors
       try {
         // Make a GET request to your server endpoint
-        const response = await fetch('http://localhost:5000/getMachines');
+        const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getMachines`);
         // Check if the response is ok
         if (response.ok) {
           // Parse the response as JSON
@@ -55,7 +55,7 @@ const MachineUsersAssigned = () => {
     // Set the center position
     const fetchCenter = async () => {
       try {
-        const res = await fetch("http://192.168.2.15:5000/getMachines");
+        const res = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getMachines`);
         const data = await res.json();
         let center = [0, 0];
         for (let i = 0; i < data.length; i++) {
