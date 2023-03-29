@@ -13,7 +13,7 @@ const AssignUsers = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch("http://localhost:5000/getMachines");
+          const res = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getMachines`);
           const data = await res.json();
           // Assuming data is an array of objects with a Users property
           // Find the object that matches the machineID and set its Users as the state
