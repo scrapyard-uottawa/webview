@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new pg.Pool({
-  host: "localhost",
+  host: "10.10.1.20",
   port: 5433, // change this if you have a different port number
   database: "ScrapYard",
   user: "Node",
@@ -200,6 +200,6 @@ app.get("/getDetections", async (req, res) => {
 });
 
 // Listen on port 5000
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
 });
