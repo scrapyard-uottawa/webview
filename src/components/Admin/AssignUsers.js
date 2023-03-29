@@ -50,7 +50,7 @@ const AssignUsers = () => {
         event.preventDefault();
         try {
             // Send a post request to the server with the newUser and machineID
-            const res = await fetch("${process.env.REACT_APP_API_ENDPOINT}/uploadUser", {
+            const res = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/uploadUser`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
