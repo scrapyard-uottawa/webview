@@ -92,6 +92,60 @@ app.post("/uploadUser", async (req, res) => {
   }
 });
 
+app.post("/modifyMachine", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log("Connected to the database");
+    switch (req.body.Modify) {
+      case "Garbage": 
+        const query1 = "UPDATE \"public\".\"Machine_List\" SET \"Garbage\" = $1 WHERE \"MachineID\" = $2";
+        const values1 = [req.body.Garbage, req.body.MachineID];
+        console.log(values);
+        await client.query(query1, values1); // add await here
+        console.log("Data uploaded successfully");
+        await client.release(); // add await here
+        console.log("Connection released");
+        break;
+      case "Compost":
+        const query2 = "UPDATE \"public\".\"Machine_List\" SET \"Compost\" = $1 WHERE \"MachineID\" = $2";
+        const values2 = [req.body.Compost, req.body.MachineID];
+        console.log(values);
+        await client.query(query2, values2); // add await here
+        console.log("Data uploaded successfully");
+        await client.release(); // add await here
+        console.log("Connection released");
+        break;
+      case "Blue_Bin":
+        const query3 = "UPDATE \"public\".\"Machine_List\" SET \"Blue_Bin\" = $1 WHERE \"MachineID\" = $2";
+        const values3 = [req.body.Blue_Bin, req.body.MachineID];
+        console.log(values);
+        await client.query(query3, values3); // add await here
+        console.log("Data uploaded successfully");
+        await client.release(); // add await here
+        console.log("Connection released");
+        break;
+      case "Black_Bin":
+        const query4 = "UPDATE \"public\".\"Machine_List\" SET \"Black_Bin\" = $1 WHERE \"MachineID\" = $2";
+        const values4 = [req.body.Black_Bin, req.body.MachineID];
+        console.log(values);
+        await client.query(query4, values4); // add await here
+        console.log("Data uploaded successfully");
+        await client.release(); // add await here
+        console.log("Connection released");
+        break;
+      default: 
+        throw new Error("Invalid Modify");
+        break;
+    }
+    res.json({ message: "Data uploaded successfully" });
+  } catch (error) {
+    // If there is an error, send back an error message
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
+});
+
+
 app.post("/removeUser", async (req, res) => {
   try {
     const client = await pool.connect();
