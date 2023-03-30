@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new pg.Pool({
-  host: "10.10.1.20",
+  host: "localhost",
   port: 5433, // change this if you have a different port number
   database: "ScrapYard",
   user: "Node",
@@ -199,7 +199,22 @@ app.get("/getDetections", async (req, res) => {
   }
 });
 
-// Listen on port 5000
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.get("/getRole", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log("Connected to the database");
+    const query = 'SELECT * FROM "public"."Role_Info"';
+    const result = await client.query(query);
+    console.log("Data retrieved successfully");
+    await client.release();
+    console.log("Connection released");
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    console.log(error.message);
+  }
+});
+
+app.listen(3001, () => {
+  console.log("Server running on port 3001");
 });
