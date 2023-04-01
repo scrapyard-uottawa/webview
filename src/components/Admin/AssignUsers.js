@@ -19,7 +19,6 @@ const AssignUsers = () => {
           // Find the object that matches the machineID and set its Users as the state
           const machine = data.find((m) => m.MachineID === machineID);
           if (machine) {
-            console.log(machine);
             setUsers(machine.Users);
           }
         } catch (error) {
