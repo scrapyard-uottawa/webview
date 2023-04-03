@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, Tab, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import "firebase/auth";
 import Cookies from "js-cookie";
+import { auth, provider } from "../../index";
+import { signInWithPopup } from "firebase/auth";
+import { Google } from "@mui/icons-material";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -37,6 +40,18 @@ function SignIn() {
       console.log(error);
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      signInWithPopup(auth, provider).then((data) => {
+        setEmail(data.user.email);
+        Cookies.set("email", data.user.email);
+        fetchData(data.user); // Call fetchData here
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   const handleSignOut = async () => {
     try {
@@ -50,7 +65,7 @@ function SignIn() {
   
   const fetchData = async (user) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getRole`);
+      const response = await fetch(`http://localhost:3001/getRole`);
       const data = await response.json();
       let role = data.filter(
         (row) =>
@@ -99,23 +114,18 @@ function SignIn() {
         </Box>
       ) : (
         <>
+          <br />
           {/* Add a sign in with Google button */}
-          {/* <GoogleOAuthProvider clientId={process.env.REACT_APP_GSIGNIN_CLIENT_ID}>
-            <GoogleLogin
-              clientId={process.env.REACT_APP_GSIGNIN_CLIENT_ID}
-              onSuccess={handleGoogleSignIn}
-              onFailure={handleGoogleSignIn}
-              cookiePolicy={"single_host_origin"}
-            />
-          </GoogleOAuthProvider> */}
-          {/* Add a horizontal line with OR text */}
-          {/* <Box display="flex" alignItems="center" sx={{ margin: 2 }}>
+          <Button onClick={handleGoogleSignIn} sx={{ width:'fit-content', border: 1 }}> 
+            <Google /><Tab label="Sign In with Google" />
+          </Button>
+          <Box display="flex" alignItems="center" sx={{ margin: 2 }}>
             <hr style={{ width: "100%" }} />
             <Typography variant="body1" sx={{ margin: "0 10px" }}>
               OR
             </Typography>
             <hr style={{ width: "100%" }} />
-          </Box> */}
+          </Box>
           {/* Keep the regular sign in form */}
           <form className="sign-in-form">
             <Box display="flex" flexDirection="column" alignItems="center">

@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -16,7 +17,9 @@ const firebaseConfig = {
 };
 
 
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new firebase.auth.GoogleAuthProvider();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -28,3 +31,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+export { auth, provider };

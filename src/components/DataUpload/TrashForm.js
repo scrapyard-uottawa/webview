@@ -2,37 +2,6 @@ import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 
-// A function that validates the input data
-const validateDataTrash = (data) => {
-  // Check if all fields are filled
-  if (
-    !data.MachineID ||
-    !data.ID ||
-    !data.TimeStamp ||
-    !data.ML_Confidence ||
-    !data.WasteType ||
-    !data.Image
-  ) {
-    return false;
-  }
-  // Check if ML_Confidence is a float number
-  if (isNaN(data.ML_Confidence)) {
-    return false;
-  }
-  // Check if WasteType is one of Blue Bin, Black Bin, Compost or Garbage
-  if (
-    data.WasteType !== "Blue Bin" &&
-    data.WasteType !== "Black Bin" &&
-    data.WasteType !== "Compost" &&
-    data.WasteType !== "Garbage"
-  ) {
-    return false;
-  }
-  
-   // If all checks pass, return true
-   return true;
-};
-
 const uploadTrash = async (d) => {
   try {
     const e = `${process.env.REACT_APP_API_ENDPOINT}/uploadTrash`;
