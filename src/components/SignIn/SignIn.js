@@ -65,7 +65,7 @@ function SignIn() {
   
   const fetchData = async (user) => {
     try {
-      const response = await fetch(`http://localhost:3001/getRole`);
+      const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getRole`);
       const data = await response.json();
       let role = data.filter(
         (row) =>
