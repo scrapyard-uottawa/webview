@@ -18,8 +18,9 @@ const DetectionPage = () => {
         // Convert it to json
         const data = await response.json();
         // Filter the data by MachineID and ID
+        let numTrashID = parseInt(TrashID);
         const detectionsData = data.filter(
-          (row) => row.MachineID === MachineID && row.ID === TrashID
+          (row) => row.MachineID === MachineID && row.ID === numTrashID
         );
         // Set the state with the filtered data
         setDetectionData(detectionsData[0]);
