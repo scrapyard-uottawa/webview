@@ -82,25 +82,25 @@ const MachineList = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Machine ID</TableCell>
-              <TableCell>Machine Name</TableCell>
-              <TableCell>Black Bin</TableCell>
-              <TableCell>Blue Bin</TableCell>
-              <TableCell>Compost</TableCell>
-              <TableCell>Garbage</TableCell>
+              <TableCell style={{ color: 'white' }}>Machine ID</TableCell>
+              <TableCell style={{ color: 'white' }}>Machine Name</TableCell>
+              <TableCell style={{ color: 'white' }}>Black Bin</TableCell>
+              <TableCell style={{ color: 'white' }}>Blue Bin</TableCell>
+              <TableCell style={{ color: 'white' }}>Compost</TableCell>
+              <TableCell style={{ color: 'white' }}>Garbage</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {machinesData.sort((a, b) => a.MachineID.localeCompare(b.MachineID)).map((machine) => (
               <TableRow key={machine.MachineID}>
-                <TableCell>
-                  <Link to={`/detections/${machine.MachineID}`}> {machine.MachineID} </Link>
+                <TableCell style={{ color: 'white' }}>
+                  <Link to={`/detections/${machine.MachineID}`} style={{color: 'white', textDecoration: 'underline'}}> {machine.MachineID} </Link>
                 </TableCell> 
-                <TableCell>{machine.Machine_Name}</TableCell> 
-                <TableCell>{(machine.Black_Bin * 100).toFixed(2)}%</TableCell> 
-                <TableCell>{(machine.Blue_Bin * 100).toFixed(2)}%</TableCell>
-                <TableCell>{(machine.Compost * 100).toFixed(2)}%</TableCell>
-                <TableCell>{(machine.Garbage * 100).toFixed(2)}%</TableCell>
+                <TableCell style={{ color: 'white' }}>{machine.Machine_Name}</TableCell> 
+                <TableCell style={{ color: 'white' }}>{(machine.Black_Bin * 100).toFixed(2)}%</TableCell> 
+                <TableCell style={{ color: 'white' }}>{(machine.Blue_Bin * 100).toFixed(2)}%</TableCell>
+                <TableCell style={{ color: 'white' }}>{(machine.Compost * 100).toFixed(2)}%</TableCell>
+                <TableCell style={{ color: 'white' }}>{(machine.Garbage * 100).toFixed(2)}%</TableCell>
               </TableRow>
             ))}
           </TableBody>

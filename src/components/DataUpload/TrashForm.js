@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Grid, Input } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'red',
+    },
+  },
+}));
 
 const uploadTrash = async (d) => {
   try {
@@ -34,6 +43,9 @@ const TrashForm = () => {
     WasteType: "",
     Image: null,
   });
+
+  const classes = useStyles();
+
   const handleChange = (e) => {
     const { name: t, value: r } = e.target;
     setData((e) => ({ ...e, [t]: r }));
@@ -61,44 +73,154 @@ const TrashForm = () => {
      <div className="TrashForm">
        <h1>Trash Form</h1>
        <form onSubmit={handleSubmit}>
-         <TextField
-           name="MachineID"
-           label="Machine ID"
-           type="text"
-           value={d.MachineID}
-           onChange={handleChange}
-         />
-         <TextField
-           name="ID"
-           label="ID"
-           type="text"
-           value={d.ID}
-           onChange={handleChange}
-         />
-         <TextField
-           name="TimeStamp"
-           label=""
-           type="datetime-local"
-           value={d.TimeStamp}
-           onChange={handleChange}
-         />
-         <TextField
-           name="ML_Confidence"
-           label="ML Confidence"
-           type="number"
-           step="any"
-           value={d.ML_Confidence}
-           onChange={handleChange}
-         />
-         <TextField
-           name="WasteType"
-           label="Waste Type"
-           type="text"
-           value={d.WasteType}
+       <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TextField 
+          name="MachineID"
+          label="Machine ID" 
+          type="text" 
+          value={d.MachineID} 
           onChange={handleChange} 
-        /> 
-        <input type= "file" onChange= {handleFileChange} /> 
-        <Button type= "submit" variant= "contained" color= "primary"> Upload </Button> 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField 
+          name="ID" 
+          label="ID" 
+          type="text" 
+          value={d.ID} 
+          onChange={handleChange} 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField 
+          name="TimeStamp" 
+          label="" 
+          type="datetime-local" 
+          value={d.TimeStamp} 
+          onChange={handleChange} 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField 
+          name="ML_Confidence" 
+          label="ML Confidence" 
+          type="number" 
+          step="any"
+          value={d.ML_Confidence} 
+          onChange={handleChange} 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField 
+          name="WasteType" 
+          label="Waste Type" 
+          type="text" 
+          value={d.WasteType} 
+          onChange={handleChange} 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Input 
+          type= "file" 
+          onChange= {handleFileChange} 
+          color="secondary" 
+          InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+          InputLabelProps={{style:{color:'white'}}} 
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+          }}
+          /> 
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" type="submit"> Upload </Button>
+        </Grid>
+      </Grid>
       </form> 
      </div>
    );

@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 
 const useStyles = makeStyles({
     root: {
-        backgroundColor: 'black',
+        backgroundColor: '#103040',
         height: '64px',
         display: 'flex',
         alignItems: 'center'

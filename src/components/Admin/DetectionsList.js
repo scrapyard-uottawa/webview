@@ -136,27 +136,27 @@ const DetectionsList = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Image</TableCell>
-                  <TableCell>Time Stamp</TableCell>
-                  <TableCell>Machine Learning Confidence</TableCell>
-                  <TableCell>Waste Type</TableCell>
+                  <TableCell style={{ color: 'white' }}>ID</TableCell>
+                  <TableCell style={{ color: 'white' }}>Image</TableCell>
+                  <TableCell style={{ color: 'white' }}>Time Stamp</TableCell>
+                  <TableCell style={{ color: 'white' }}>Machine Learning Confidence</TableCell>
+                  <TableCell style={{ color: 'white' }}>Waste Type</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {detections.sort((a, b) => a.ID - b.ID).map(detection => (
                   <TableRow key={detection.ID}>
-                    <TableCell><Link to={`/individualDetection/${detection.MachineID}/${detection.ID}`}>{detection.ID}</Link></TableCell>
-                    <TableCell>
+                    <TableCell style={{ color: 'white' }}><Link to={`/individualDetection/${detection.MachineID}/${detection.ID}`} style={{color: 'white', textDecoration: 'underline'}}>{detection.ID}</Link></TableCell>
+                    <TableCell style={{ color: 'white' }}>
                     <img
                         src={`data:image/png;base64,${detection.base64}`} // add data URI scheme here
                         alt="Detection"
                         height="100"
                     />
                     </TableCell>
-                    <TableCell>{detection.TimeStamp}</TableCell>
-                    <TableCell>{(detection.ML_Confidence * 100).toFixed(2)}%</TableCell>
-                    <TableCell>{detection.WasteType}</TableCell>
+                    <TableCell style={{ color: 'white' }}>{detection.TimeStamp}</TableCell>
+                    <TableCell style={{ color: 'white' }}>{(detection.ML_Confidence * 100).toFixed(2)}%</TableCell>
+                    <TableCell style={{ color: 'white' }}>{detection.WasteType}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

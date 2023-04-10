@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import logo from './logo.png';
 
 function HomePage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh' }}>
+      {/* insert image ./logo.png here */}
+      <img src={logo} alt="logo" height={200} />
       <Typography variant="h2" align="center">
         Welcome to ScrapYard!
       </Typography>

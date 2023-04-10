@@ -101,19 +101,19 @@ const MachineUsersAssigned = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Machine ID</TableCell>
-              <TableCell>Machine Name</TableCell>
-              <TableCell>Users Assigned</TableCell>
-              <TableCell>Add Users</TableCell>
+              <TableCell style={{ color: 'white' }}>Machine ID</TableCell>
+              <TableCell style={{ color: 'white' }}>Machine Name</TableCell>
+              <TableCell style={{ color: 'white' }}>Users Assigned</TableCell>
+              <TableCell style={{ color: 'white' }}>Add Users</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.sort((a, b) => a.MachineID.localeCompare(b.MachineID)).map((machine) => (
               <TableRow key={machine.MachineID}>
-                <TableCell><Link to={`/detections/${machine.MachineID}`}>{machine.MachineID}</Link></TableCell>
-                <TableCell>{machine.Machine_Name}</TableCell>
-                <TableCell>{machine.Users ? machine.Users.join(", ") : "None"}</TableCell>
-                <TableCell><Link style={{textDecoration: 'none'}} to={`/addUsers/${machine.MachineID}`}><Button variant="contained">Add/Remove User(s)</Button></Link></TableCell> 
+                <TableCell style={{ color: 'white' }}><Link to={`/detections/${machine.MachineID}`} style={{color: 'white', textDecoration: 'underline'}}>{machine.MachineID}</Link></TableCell>
+                <TableCell style={{ color: 'white' }}>{machine.Machine_Name}</TableCell>
+                <TableCell style={{ color: 'white' }}>{machine.Users ? machine.Users.join(", ") : "None"}</TableCell>
+                <TableCell style={{ color: 'white' }}><Link style={{textDecoration: 'none'}} to={`/addUsers/${machine.MachineID}`}><Button variant="contained">Add/Remove User(s)</Button></Link></TableCell> 
               </TableRow>
             ))}
           </TableBody>

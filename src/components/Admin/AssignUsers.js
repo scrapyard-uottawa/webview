@@ -1,7 +1,16 @@
 import { React, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, TablePagination, Paper, TextField, Button } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import './AssignUsers.css';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'red',
+    },
+  },
+}));
 
 const AssignUsers = () => {
     const machineID = useParams().id;
@@ -9,6 +18,8 @@ const AssignUsers = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [newUser, setNewUser] = useState("");
+
+    const classes = useStyles();
   
     useEffect(() => {
       const fetchData = async () => {
@@ -94,52 +105,53 @@ const AssignUsers = () => {
         <div className="container">
           {/* Use a div with className="table" */}
           <div className="table">
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 300 }} aria-label="simple table">
-                <TableHead>
+          <TableContainer component={Paper} style={{ backgroundColor: '#203b49' }}>
+            <Table sx={{ minWidth: 300 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ color: 'white' }}>Users</TableCell>
+                  <TableCell style={{ color: 'white' }}>Remove</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+              {/* Slice the users array based on the page and rowsPerPage */}
+              {users
+                ? users
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((user) => (
+                      <TableRow key={user}>
+                        <TableCell style={{ color: 'white' }}>{user}</TableCell>
+                        {/* Add a new TableCell with a Button that calls onRemove */}
+                        <TableCell>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => onRemove(user)}
+                          >
+                            Remove
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                : (
                   <TableRow>
-                    <TableCell>Users</TableCell>
-                    <TableCell>Remove</TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
-                {/* Slice the users array based on the page and rowsPerPage */}
-                {users
-                  ? users
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((user) => (
-                        <TableRow key={user}>
-                          <TableCell>{user}</TableCell>
-                          {/* Add a new TableCell with a Button that calls onRemove */}
-                          <TableCell>
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              onClick={() => onRemove(user)}
-                            >
-                              Remove
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      ))
-                  : (
-                    <TableRow>
-                      <TableCell></TableCell>
-                    </TableRow>
-                  )}
-              </TableBody>
-              </Table>
-              {/* Use TablePagination outside of Table to prevent scrolling */}
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={users?.length || 0}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </TableContainer>
+                )}
+            </TableBody>
+            </Table>
+            {/* Use TablePagination outside of Table to prevent scrolling */}
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={users?.length || 0}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              style={{ color: 'white' }}
+            />
+          </TableContainer>
           </div>
           {/* Use a div with className="form" */}
           <div className="form">
@@ -150,6 +162,21 @@ const AssignUsers = () => {
                 variant="outlined"
                 value={newUser}
                 onChange={handleChangeNewUser}
+                InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+                InputLabelProps={{style:{color:'white'}}} 
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'white',
+                    },
+                  },
+                }}
               />
               {/* make button on the next line */}
                 <br /><br />

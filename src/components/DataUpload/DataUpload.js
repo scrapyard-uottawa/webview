@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'red',
+    },
+  },
+}));
 
 // A function that validates the input data
 const validateDataMachine = (data) => {
@@ -72,6 +81,8 @@ const DataUpload = () => {
    
    const [message, setMessage] = useState("");
    
+   const classes = useStyles();
+
    // A handler function that updates the state when the text fields change 
    const handleChange = (event) => {
      
@@ -146,78 +157,249 @@ const DataUpload = () => {
           
           <form onSubmit={handleSubmit}>
             
+          <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <TextField
+              label="Machine ID"
+              name="MachineID"
+              type="text"
+              value={data.MachineID}
+              onChange={handleChange}
+              InputProps={{
+                style: { color: 'white' },
+                classes: {
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+              InputLabelProps={{
+                style: { color: 'white' },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Machine Name"
+              name="Machine_Name"
+              type="text"
+              value={data.Machine_Name}
+              onChange={handleChange}
+              InputProps={{
+                style: { color: 'white' },
+                classes: {
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+              InputLabelProps={{
+                style: { color: 'white' },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Black Bin"
+              name="Black_Bin"
+              type="percent"
+              value={data.Black_Bin}
+              onChange={handleChange}
+              InputProps={{
+                style: { color: 'white' },
+                classes: {
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+              InputLabelProps={{
+                style: { color: 'white' },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Blue Bin"
+              name="Blue_Bin"
+              type="number"
+              value={data.Blue_Bin}
+              onChange={handleChange}
+              InputProps={{
+                style: { color: 'white' },
+                classes: {
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+              InputLabelProps={{
+                style: { color: 'white' },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Compost"
+              name="Compost"
+              type="number"
+              value={data.Compost}
+              onChange={handleChange}
+              InputProps={{
+                style: { color: 'white' },
+                classes: {
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+              InputLabelProps={{
+                style: { color: 'white' },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-                name="MachineID"
-                label="Machine ID"
-                type="text"
-                value={data.MachineID}
-                onChange={handleChange}
-              />
-              
-              <TextField
-                name="Machine_Name"
-                label="Machine Name"
-                type="text"
-                value={data.Machine_Name}
-                onChange={handleChange}
-              />
-              
-              <TextField
-                name="Black_Bin"
-                label="Black Bin"
-                type="percent"
-                value={data.Black_Bin}
-                onChange={handleChange}
-              />
-              
-              <TextField
-                name="Blue_Bin"
-                label="Blue Bin"
-                type="number"
-                value={data.Blue_Bin}
-                onChange={handleChange}
-              />
-              
-              <TextField
-                 name="Compost"
-                 label="Compost"
-                 type="number"
-                 value={data.Compost}
-                 onChange={handleChange}
-              />
-
-              <TextField
-                name="Garbage"
                 label="Garbage"
+                name="Garbage"
                 type="number"
                 value={data.Garbage}
                 onChange={handleChange}
+                InputProps={{
+                  style: { color: 'white' },
+                  classes: {
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+                InputLabelProps={{
+                  style: { color: 'white' },
+                }}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'white',
+                    },
+                  },
+                }}
               />
-
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-                name="Longitude"
-                label="Longitude"
-                type="text"
-                value={data.GPS[0]}
-                onChange={handleChange}
-              />
-
-              <TextField
-                name="Latitude"
-                label="Latitude"
-                type="text"
-                value={data.GPS[1]}
-                onChange={handleChange}
-              />
-
-              <Button type="submit" variant="contained" color="primary">
-                Upload
-              </Button>
-
+              label="Longitude" 
+              name="Longitude" 
+              type="text" 
+              value={data.GPS[0]} 
+              onChange={handleChange} 
+              InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+              InputLabelProps={{style:{color:'white'}}} 
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+            </Grid>
+            <Grid item xs={12}>
+            <TextField 
+              label="Latitude" 
+              name="Latitude" 
+              type="text" 
+              value={data.GPS[1]} 
+              onChange={handleChange} 
+              InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+              InputLabelProps={{style:{color:'white'}}} 
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+              }}
+            />
+            </Grid>
+            <Grid item xs={12}>
+            <Button type="submit" variant="contained" color="primary">
+              Upload
+            </Button>
+            </Grid>
+          </Grid>
           </form>
-
           <p>{message}</p>
-
         </div>
 
     );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Tab, TextField, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -8,11 +9,22 @@ import Cookies from "js-cookie";
 import { auth, provider } from "../../index";
 import { signInWithPopup } from "firebase/auth";
 import { Google } from "@mui/icons-material";
+import logo from './logo.png';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'red',
+    },
+  },
+}));
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const classes = useStyles();
 
   useEffect(() => {
     // Use onAuthStateChanged to listen for auth changes
@@ -94,11 +106,13 @@ function SignIn() {
       justifyContent="center"
       height="80vh"
     >
-      <Typography variant="h4" align="center">
-        Sign In
-      </Typography>
+      <img src={logo} alt="logo" style={{ height: '20vh' }} />
+      
       {loggedIn ? (
         <Box display="flex" flexDirection="column" alignItems="center">
+          <Typography variant="h4" align="center">
+            Log Out
+          </Typography>
           <Typography variant="h6" align="center">
             You are signed in as {getArticle()} {Cookies.get('role')}.
           </Typography>
@@ -114,6 +128,9 @@ function SignIn() {
         </Box>
       ) : (
         <>
+          <Typography variant="h4" align="center">
+            Sign In
+          </Typography>
           <br />
           {/* Add a sign in with Google button */}
           <Button onClick={handleGoogleSignIn} sx={{ width:'fit-content', border: 1 }}> 
@@ -136,6 +153,21 @@ function SignIn() {
                 sx={{ width: "fit-content", marginTop: "10%" }}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+                InputLabelProps={{style:{color:'white'}}} 
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'white',
+                    },
+                  },
+                }}
               />
               <TextField
                 label="Password"
@@ -145,6 +177,21 @@ function SignIn() {
                 sx={{ width: "fit-content" }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                InputProps={{style:{color:'white'},classes:{notchedOutline :classes.notchedOutline}}} 
+                InputLabelProps={{style:{color:'white'}}} 
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'white',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'white',
+                    },
+                  },
+                }}
               />
               <Button
                 variant="contained"
