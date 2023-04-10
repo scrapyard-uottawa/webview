@@ -20,6 +20,14 @@ const storage = multer.memoryStorage(); // use memory storage instead of disk st
 // create multer middleware function
 const upload = multer({ storage: storage });
 
+app.get('/current-time', (req, res) => {
+  const now = new Date();
+  const currentDate = now.toLocaleDateString();
+  const currentTime = now.toLocaleTimeString();
+  res.send(`The server date and time is ${currentDate} ${currentTime}`);
+});
+
+
 // create a route for uploading images
 app.post("/uploadTrash", upload.single("Image"), async (req, res) => {
   try {
